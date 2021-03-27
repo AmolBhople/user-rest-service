@@ -1,0 +1,77 @@
+server:
+  port: 8001
+spring:
+  profiles:
+    - dev
+  application:
+    name: skeleton-service
+
+  security:
+    user:
+      password: P@ssword1@
+      name: user
+      roles:
+        - USER, ENDPOINT_ADMIN
+    basic:
+      enabled: false
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/colors
+    username: postgres
+    password: angryBird1@
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+      pool-name: HikariPoolZZZ
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+logging:
+  file:
+    name: E://springbootLogs//skeleton-service.log
+#  level:
+#    - DEBUG
+
+management:
+  endpoints:
+    web:
+#      base-path: /devops/actuator
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: false
+    health:
+      show-details: always
+  metrics:
+    web:
+      server:
+        request:
+          autotime:
+            enabled: true
+info:
+  team:
+    name: INFO TEXT
+    dev: Amol Bhople
+    verison: 1.0.0
+    project:
+      owner: Amol Bhople
+
+
+
+
+---
+#TEST properties................................
+server:
+  port: 9001
+spring:
+  profiles:
+    - test
+  application:
+    name: skeleton-service
+  cloud:
+    config:
+      uri: http://localhost:9999
